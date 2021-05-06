@@ -1,0 +1,242 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap");
+:root {
+  --gradient: $gradient;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+}
+
+*::selection {
+  background: #f91a05;
+  color: #fff;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f9f9f9;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0.5px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem 9%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+header img {
+  width: 150px;
+}
+header .nav-container a {
+  font-size: 15px;
+  margin-left: 20px;
+  color: #79665e;
+}
+header a:hover {
+  color: #f91a05;
+}
+header input {
+  display: none;
+}
+header label {
+  font-size: 3rem;
+  color: #79665e;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+}
+
+section {
+  min-height: 100vh;
+  padding: 0 9%;
+  padding-top: 12.5rem;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(../img/live-bg.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.home .image img {
+  width: 50vw;
+  animation: float 3s linear infinite;
+}
+.home .content h3 {
+  font-size: 5.5rem;
+  color: #333;
+  text-transform: uppercase;
+}
+.home .content h3 span {
+  color: #79665e;
+}
+.home .content p {
+  font-size: 1.7rem;
+  color: #666;
+  padding: 1rem 0;
+}
+
+.heading {
+  text-align: center;
+  background: linear-gradient(90deg, #333, #79665e);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  padding-top: 1rem;
+}
+
+.features .box-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.features .box-container .box {
+  flex: 1 1 30rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  margin: 1.5rem;
+  padding: 3rem 2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+.features .box-container .box img {
+  width: 50%;
+}
+
+.spec-section {
+  text-align: left;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+.spec-section h3 {
+  color: #8f8362;
+  text-align: center;
+}
+.spec-section .spec-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 12px;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 3rem;
+  border-radius: 5rem;
+  background: linear-gradient(90deg, #333, #79665e);
+  font-size: 1.7rem;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  transition: all 0.3s linear;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0rem);
+  }
+  50% {
+    transform: translateY(-3.5rem);
+  }
+}
+@media (max-width: 1200px) {
+  html {
+    font-size: 65%;
+  }
+}
+@media (max-width: 991px) {
+  section {
+    padding: 0 3%;
+    padding-top: 7.5rem;
+  }
+}
+@media (max-width: 768px) {
+  header label {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  header .nav-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 1rem 2rem;
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+    transition: 0.2s linear;
+  }
+  header .nav-container a {
+    display: block;
+    margin: 2rem 0;
+    font-size: 2rem;
+  }
+
+  header input:checked ~ .nav-container {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  header input:checked ~ label::before {
+    content: "";
+  }
+
+  .home {
+    flex-flow: column-reverse;
+  }
+  .home .image img {
+    width: 100%;
+  }
+  .home .content h3 {
+    font-size: 3.6rem;
+  }
+  .home .content p {
+    font-size: 1.5rem;
+  }
+  .home .content a {
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
