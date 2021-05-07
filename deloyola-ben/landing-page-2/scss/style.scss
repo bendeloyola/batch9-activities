@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap");
 @import "color";
 
@@ -35,7 +36,8 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  background: #fff;
+  // background: #941b5ebf;
+  background: #000;
   box-shadow: 0.5px 12px rgba(0, 0, 0, 0.1);
   padding: 2rem 9%;
   display: flex;
@@ -44,16 +46,22 @@ header {
   z-index: 1000;
 
   img {
-    width: 150px;
+    width: 64px;
+    border-radius: 50%;
   }
 
   .nav-container a {
-    font-size: 15px;
+    font-family: "Bebas Neue", cursive;
+    font-size: 25px;
     margin-left: 20px;
-    color: $brown;
+    color: $pinkish;
+    // background: #74144a85;
   }
   a:hover {
-    color: $red;
+    color: #f798c2;
+  }
+  a:active {
+    color: #f798c2;
   }
   input {
     display: none;
@@ -77,7 +85,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url(../img/live-bg.png) no-repeat;
+  background: url(../img/new-bg.png) no-repeat;
   background-size: cover;
   background-position: center;
   .image img {
@@ -87,17 +95,17 @@ section {
 
   .content h3 {
     font-size: 5.5rem;
-    color: #333;
+    color: #d8db36;
     text-transform: uppercase;
 
     span {
-      color: $brown;
+      color: #efd8cf;
     }
   }
 
   .content p {
     font-size: 1.7rem;
-    color: #666;
+    color: #efd8cf;
     padding: 1rem 0;
   }
 }
@@ -111,31 +119,7 @@ section {
   font-size: 3.5rem;
   text-transform: uppercase;
   padding-top: 1rem;
-}
-
-.features {
-  .box-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    .box {
-      flex: 1 1 30rem;
-      background: #fff;
-      border-radius: 0.5rem;
-      border: 0.1rem solid rgba(0, 0, 0, 0.2);
-      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-      margin: 1.5rem;
-      padding: 3rem 2rem;
-      border-radius: 0.5rem;
-      text-align: center;
-
-      img {
-        width: 50%;
-      }
-    }
-  }
+  padding-bottom: 5rem;
 }
 
 .spec-section {
@@ -153,6 +137,209 @@ section {
     padding: 0.25rem 0;
     border-bottom: 1px solid #e2e2e2;
     font-size: 12px;
+  }
+}
+
+.features {
+  background: #d65e6975;
+  .box-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .box {
+      flex: 1 1 30rem;
+      background: #fff;
+      border-radius: 0.5rem;
+      border: 0.1rem solid rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+      margin: 1.5rem;
+      padding: 3rem 2rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      transition: 0.2s linear;
+      img {
+        width: 50%;
+      }
+      h3 {
+        font-size: 2rem;
+        color: #333;
+      }
+      p {
+        font-size: 1.3rem;
+        color: #666;
+        padding: 1rem 0;
+      }
+    }
+  }
+}
+.review {
+  background: url(../img/video-bg.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .video {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10rem 0;
+    align-content: center;
+    justify-content: space-around;
+    h3 {
+      font-size: 3rem;
+      color: #fff;
+      text-align: center;
+    }
+
+    p {
+      color: #fff;
+      font-size: 1.6rem;
+      margin: 2rem auto;
+      width: auto;
+      text-align: center;
+    }
+  }
+}
+
+.subscribe {
+  text-align: center;
+  padding: 5rem 1rem;
+  background: url(../img/new-bg.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  h3 {
+    color: #fff;
+    font-size: 3rem;
+    text-transform: uppercase;
+  }
+  p {
+    color: #fff;
+    font-size: 1.6rem;
+    margin: 2rem auto;
+    width: auto;
+  }
+  form {
+    display: flex;
+    max-width: 70rem;
+    border: 0.2rem solid #fff;
+    padding: 0.5rem;
+    border-radius: 5rem;
+    margin: 2rem auto;
+    height: 5.5rem;
+
+    input[type="email"] {
+      padding: 0 2rem;
+      font-size: 1.7rem;
+      background: none;
+      width: 100%;
+      color: #fff;
+      text-transform: none;
+    }
+    input[type="email"]::placeholder {
+      color: #eee;
+      text-transform: capitalize;
+    }
+    input[type="submit"] {
+      background: #fff;
+      width: 20rem;
+      font-size: 1.7rem;
+      border-radius: 5rem;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      color: $pinkish;
+    }
+  }
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 4rem;
+
+  .image {
+    flex: 1 1 40rem;
+
+    img {
+      width: 100%;
+      padding: 2rem;
+    }
+  }
+  form {
+    flex: 1 1 40rem;
+    padding: 2rem 3rem;
+    border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    background: #fff;
+
+    .heading {
+      text-align: left;
+      padding: 0;
+      padding-bottom: 2rem;
+    }
+
+    .inputBox {
+      position: relative;
+
+      input,
+      textarea {
+        width: 100%;
+        background: none;
+        color: #666;
+        margin: 1.5rem 0;
+        padding: 0.5rem 0;
+        border-bottom: 0.1rem solid rgb(0, 0, 0, 0.1);
+        text-transform: none;
+      }
+
+      textarea {
+        resize: none;
+        height: 13rem;
+      }
+      label {
+        position: absolute;
+        top: 1.7rem;
+        left: 0;
+        font-size: 1.7rem;
+        color: #666;
+        transition: 0.2s linear;
+      }
+
+      input:focus ~ label,
+      input:valid ~ label,
+      textarea:focus ~ label,
+      textarea:valid ~ label {
+        top: -0.5rem;
+        font-size: 1.5rem;
+        color: $pinkish;
+      }
+    }
   }
 }
 
@@ -209,7 +396,7 @@ section {
     top: 100%;
     left: 0;
     width: 100%;
-    background: #fff;
+    background: #000;
     padding: 1rem 2rem;
     border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
@@ -253,5 +440,9 @@ section {
 @media (max-width: 450px) {
   html {
     font-size: 50%;
+    // min-height: 82vh;
+  }
+  .review {
+    min-height: 82vh;
   }
 }
