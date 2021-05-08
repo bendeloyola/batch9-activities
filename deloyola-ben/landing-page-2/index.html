@@ -11,6 +11,10 @@
 
       <!-- custom css -->
       <link rel="stylesheet" href="./css/style.css">
+
+      <!-- javascript -->
+       <script defer src="./js/index.js"></script>
+      
 </head>
 <body>
 
@@ -182,8 +186,9 @@
     <div class="subscribe">
         <h3>Subscribe For New Features</h3>
         <p>By submitting this form, you agree to our Terms & Conditions and Privacy Policy.</p>
-        <form action="">
-            <input type="email" placeholder="Enter your email">
+        <form action="#" id="submit-form" method="GET">
+            <input type="email" id="email-subs" placeholder="Enter your email" required>
+            <span id="text-span"></span>
             <input type="submit" value="Subscribe">
         </form>
     </div>
@@ -194,23 +199,23 @@
             <img src="./img/gibson-logo.png" alt="">
         </div>
 
-        <form action="./submitted.html" method="GET">
+        <form action="./submitted.html" method="GET" id="submitted-form">
             <h1 class="heading">contact us</h1>
             <div class="inputBox">
-                <input type="text" name="name" required>
+                <input type="text" name="name" required autocomplete="off">
                 <label>name</label>
             </div>
             <div class="inputBox">
-                <input type="email" name="email" required>
+                <input type="email" name="email" id="email" required onkeydown="emailValidation()" autocomplete="off">
                 <span id="text"></span>
                 <label>email</label>
             </div>
             <div class="inputBox">
-                <input type="number" name="phone" required>
+                <input type="number" name="phone" required autocomplete="off">
                 <label>phone</label>
             </div>
             <div class="inputBox">
-                <textarea required  name="message" id="" cols="30" rows="10"></textarea>
+                <textarea required  name="message" id="" cols="30" rows="10" autocomplete="off"></textarea>
                 <label>message</label>
             </div>
 
