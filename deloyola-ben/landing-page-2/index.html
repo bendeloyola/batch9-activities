@@ -50,7 +50,7 @@
         <h1 class="heading">Les Paul Junior Specifications</h1>
         <div class="box-container">
             <div class="box">
-                <img src="./img/body.png" alt="P90">
+                <img src="./img/body2.png" alt="P90">
                 <div class="spec-section">
                     <h3>Body</h3>
                     <div class="spec-item">
@@ -194,22 +194,23 @@
             <img src="./img/gibson-logo.png" alt="">
         </div>
 
-        <form action="">
+        <form action="./submitted.html" method="GET">
             <h1 class="heading">contact us</h1>
             <div class="inputBox">
-                <input type="text" required>
+                <input type="text" name="name" required>
                 <label>name</label>
             </div>
             <div class="inputBox">
-                <input type="email" required>
+                <input type="email" name="email" required>
+                <span id="text"></span>
                 <label>email</label>
             </div>
             <div class="inputBox">
-                <input type="text" required>
+                <input type="number" name="phone" required>
                 <label>phone</label>
             </div>
             <div class="inputBox">
-                <textarea required  name="" id="" cols="30" rows="10"></textarea>
+                <textarea required  name="message" id="" cols="30" rows="10"></textarea>
                 <label>message</label>
             </div>
 

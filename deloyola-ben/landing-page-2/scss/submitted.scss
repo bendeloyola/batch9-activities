@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap");
+@import "color";
+
+.submitted {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 4rem;
+
+  .image {
+    flex: 1 1 40rem;
+
+    img {
+      width: 30%;
+      padding: 2rem;
+    }
+  }
+  form {
+    flex: 1 1 40rem;
+    padding: 2rem 3rem;
+    border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    background: #fff;
+
+    .heading {
+      text-align: center;
+      padding: 0;
+      padding-bottom: 2rem;
+      font-family: "Bebas Neue", cursive;
+      font-size: 25px;
+      margin-left: 20px;
+      color: $pinkish;
+    }
+
+    .inputBox {
+      position: relative;
+
+      input,
+      textarea {
+        width: 100%;
+        background: none;
+        color: #666;
+        margin: 1.5rem 0;
+        padding: 0.5rem 0;
+        border-bottom: 0.1rem solid rgb(0, 0, 0, 0.1);
+        text-transform: none;
+      }
+
+      textarea {
+        resize: none;
+        height: 13rem;
+      }
+      label {
+        position: absolute;
+        top: 1.7rem;
+        left: 0;
+        font-size: 1.7rem;
+        color: #666;
+        transition: 0.2s linear;
+      }
+    }
+  }
+}
