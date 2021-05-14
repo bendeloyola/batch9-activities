@@ -22,9 +22,17 @@ fridge.push(item);
 
 function moveUp(){
     //your code
-    // buyList.push(fridge[0]);
-    // fridge.shift();
-   
+
+    // if(fridge.length !== 0){
+    //     buyList.push(fridge[0]);
+    //     fridge.shift();
+    
+    //     console.log(fridge);
+    //     console.log(buyList);
+    // } else {
+    //     return null
+    // }
+    
     // fridge.forEach(function(item, index) {
     //     fridge.splice(index, 1);
     //     buyList.push(item);
@@ -36,9 +44,9 @@ function moveUp(){
         var data = fridge.shift()
         buyList.push(data)
         console.log(buyList);
-        
-        return buyList
-        
+        buyListDisplay.innerHTML = buyList
+        fridgeListDisplay.innerHTML = fridge
+
     } else {
         console.log(fridge);
         return null
@@ -59,9 +67,10 @@ function moveDown(){
         var data =  buyList.pop(data);
         fridge.push(data)
         console.log(buyList);
-        return fridge
-    } else {
         console.log(fridge);
+        buyListDisplay.innerHTML = buyList
+        fridgeListDisplay.innerHTML = fridge
+    } else {
         return null
     }
 }
