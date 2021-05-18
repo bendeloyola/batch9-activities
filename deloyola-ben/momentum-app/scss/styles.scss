@@ -4,18 +4,20 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 html,
 body {
-  background-color: red;
-  background-size: cover;
+  background-color: #161b22;
   font-family: "Poppins", sans-serif;
+  background: url(../img/background.png) no-repeat;
+  background-repeat: no-repeat;
+  // background-position: center;
+  // height: 90vh;
 }
 
 header {
-  width: 100%;
-  height: 100vh;
   position: relative;
   overflow: hidden;
 }
@@ -40,11 +42,19 @@ header:after {
   align-content: center;
   justify-content: space-around;
   color: #fff;
+
+  .logo {
+    font-size: 30px;
+  }
+  .date-time {
+    font-size: 2vh;
+    margin-top: 2vh;
+  }
 }
 
 .enter-name {
   position: absolute;
-  z-index: 30;
+  // z-index: 30;
   line-height: 4rem;
   top: calc(50% - 2rem);
   width: 100%;
@@ -63,5 +73,216 @@ header:after {
     color: #fff;
     font-family: "Poppins", sans-serif;
     font-size: 20px;
+  }
+}
+
+.container-main {
+  display: none;
+  margin-top: 22vh;
+  .todoList {
+    input {
+      text-decoration: none;
+      border: none;
+      width: 60vh;
+      border-bottom: solid #ddd 2px;
+      background: transparent;
+      outline: none;
+      color: #fff;
+      font-family: "Poppins", sans-serif;
+      font-size: 20px;
+    }
+  }
+}
+
+.todoList ul,
+.qoutes ul {
+  list-style-type: none;
+}
+
+$color: blue;
+$remove: rgb(197, 42, 42);
+
+.btn-todo {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color;
+    border-radius: 10rem;
+    z-index: -2;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: darken($color, 15%);
+    transition: all 0.3s;
+    border-radius: 10rem;
+    z-index: -1;
+  }
+  &:hover {
+    color: #fff;
+    &:before {
+      width: 100%;
+    }
+  }
+}
+
+.btn-remove {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.15rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $remove;
+    border-radius: 10rem;
+    z-index: -2;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: darken($remove, 15%);
+    transition: all 0.3s;
+    border-radius: 10rem;
+    z-index: -1;
+  }
+  &:hover {
+    color: #fff;
+    &:before {
+      width: 100%;
+    }
+  }
+}
+
+// media queries
+
+@media (max-width: 1200px) {
+  html {
+    font-size: 65%;
+  }
+}
+
+@media (max-width: 991px) {
+  html {
+    font-size: 50%;
+    // min-height: 82vh;
+  }
+  .container {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    .logo {
+      font-size: 36px;
+    }
+    .date-time {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .enter-name input {
+    width: 85%;
+  }
+  .todoList input {
+    width: 70%;
+  }
+  .container-phone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+
+    .qoutes {
+      margin-top: 5vh;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .container-ipad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+
+    .qoutes {
+      margin-top: 5vh;
+    }
+  }
+  .todoList input {
+    width: 75%;
+  }
+}
+
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+    // min-height: 82vh;
+  }
+  .container {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    .logo {
+      font-size: 36px;
+    }
+    .date-time {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .enter-name input {
+    width: 85%;
+  }
+  .todoList input {
+    width: 70%;
+  }
+  .container-phone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+
+    .qoutes {
+      margin-top: 5vh;
+    }
   }
 }

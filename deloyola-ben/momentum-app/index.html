@@ -12,17 +12,33 @@
     <header>
         <nav>
             <div class="container">
-                <h3 class="logo">Momentum<span>App</span></h3>
+                <h3 class="logo">Momentum<span> App</span></h3>
                 <div class="date-time">
                     <div id="currentTime"></div>
                     <p id="date"></p>
                 </div>
             </div>
         </nav>
-        <div class="enter-name" data-speed="0.1">
-            <h1  >Enter Your Name</h1>
-            <input id="nameInput" type="text">
-        </div>
     </header>
+    <div class="enter-name" data-speed="0.1">
+        <h1 id="heroText" >Enter Your Name</h1>
+        <input id="nameInput" type="text">
+        <div class="container-main" id="addTodo">
+            <div class="todoList">
+                <h2>What is your main focus today?</h2>
+                <input id="todoInput" type="text">
+                <button id="add" class="btn-todo">Add</button>
+                <ul id="focusToday">
+                </ul>
+            </div>
+            <div class="qoutes" id="qoutes">
+                <h2>Qoutes</h2>
+                <input id="qoutesInput" type="text">
+                <button id="addQoutes" class="btn-todo">Add</button>
+                <ul id="qoutesList">
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
