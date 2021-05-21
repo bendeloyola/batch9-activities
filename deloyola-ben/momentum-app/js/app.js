@@ -1,5 +1,8 @@
 let currentTimeDiv = document.querySelector("#currentTime")
 let currentDate = document.querySelector("#date")
+let hourHand = document.querySelector("#hourHand")
+let secondHand = document.querySelector("#secondHand")
+let minuteHand = document.querySelector("#minuteHand")
 let nameInputVal = document.getElementById("nameInput");
 let heroTextVal = document.getElementById("heroText");
 let createNewDiv = document.createElement("div")
@@ -11,33 +14,80 @@ let qoutesInput = document.getElementById("qoutesInput")
 let qoutesList = document.getElementById("qoutesList")
 let addQoutes = document.querySelector('#addQoutes');
 let addTodoList = document.getElementById("addTodo")
-let todoInputVal = document.getElementById("todoInput")
+let mainFocus = document.getElementById("mainFocus")
+let mainFocusH2 = document.getElementById("mainFocusH2")
+
 let createNewButton = document.createElement("button")
 let mediaQuery450px = window.matchMedia('(max-width: 450px)')
 let mediaQuery768px = window.matchMedia('(max-width: 768px)')
 let mediaQuery1200px = window.matchMedia('(max-width: 1200px)') 
 let enterName = document.querySelector('.enter-name')
+let wrapper = document.querySelector('.wrapper');
 
-//for time
-var today = new Date();
-var time = today.toLocaleString('PHT', { hour: 'numeric', minute: 'numeric', hour12: true })
+setInterval(display, 0)
+//date time display function
+function display(){
 
-//for date
-let date =  new Date().toDateString();
+    //for time
+    var today = new Date();
+    var time = today.toLocaleString('PHT', { hour: 'numeric', minute: 'numeric', hour12: true })
+    
+    //for date
+    let date =  new Date().toDateString();
+    
+    // currentTimeDiv.innerHTML = time;
+    currentDate.innerHTML = date;
+}
 
+    
+//main focus value
+mainFocus.onkeydown = function(e){
+    if(e.keyCode == 13){
+        
+        let addP = document.createElement("p")
+        let itemText = document.createTextNode(mainFocus.value)
 
-currentTimeDiv.innerHTML = time;
-currentDate.innerHTML = date;
+        mainFocus.style.display = "none"
+        addP.appendChild(itemText)
+        addP.style.color = "white"
+        addP.style.display = "block"
+        mainFocusH2.appendChild(addP)
 
+        mainFocus.value = ""
+        
+    }
+}
+
+setInterval(setClock, 1000)
+
+function setClock(){
+    const currentDate = new Date()
+    const secondsRatio = currentDate.getSeconds() / 60
+    const minutesRatio = (secondsRatio + currentDate.getMinutes()) / 60
+    const hoursRatio = (minutesRatio + currentDate.getHours()) / 12
+
+    setRotation(secondHand, secondsRatio)
+    setRotation(minuteHand, minutesRatio)
+    setRotation(hourHand, hoursRatio)
+}
+
+function setRotation(element, rotationRatio){
+    element.style.setProperty('--rotation', rotationRatio * 360)
+}
+
+setClock()
 
 nameInputVal.onkeydown = function(e){
     if(e.keyCode == 13){
         // console.log(nameInputVal.value);
-        heroTextVal.textContent = "Good Day, " + nameInputVal.value + "!"
+        const inputValName = document.createElement("input").value = nameInputVal.value;
+        heroTextVal.textContent = "Good Day, " + inputValName + "!"
         nameInputVal.style.display = "none"
+        document.getElementById("todoListBtnOpen").style.display = 'block'
+        wrapper.style.display = 'block'
         addTodoList.style.display = "flex"
         addTodoList.style.justifyContent = "space-around"
-        enterName.style.top = '20%'
+        enterName.style.top = '40%'
         
         if(mediaQuery450px){
             mediaQuery450px.addListener(WidthChange);
@@ -89,25 +139,6 @@ function ipadChange(ipad){
 //     }
 // }
 
-(function () {
-    add.addEventListener('click', function () {
-    //   let input = document.querySelector('#text');
-    //   let list = document.querySelector('#list'); 
-
-      let addLi = document.createElement("li")
-      let itemText = document.createTextNode(todoInputVal.value); // create text node
-      
-     
-        console.log(itemText);
-        addLi.appendChild(itemText); // append text node to li node
-        addLi.innerHTML += ' <button class="btn-remove" onclick="this.parentNode.remove()">remove</button>';
-        focusToday.appendChild(addLi); // append li node to list
-        
-        todoInputVal.value = ""; // clear input
-     
-    });
-  })();
-
   (function () {
     addQoutes.addEventListener('click', function () {
     //   let input = document.querySelector('#text');
@@ -119,7 +150,8 @@ function ipadChange(ipad){
      
         console.log(itemText);
         addLi.appendChild(itemText); // append text node to li node
-        addLi.innerHTML += ' <button class="btn-remove" onclick="this.parentNode.remove()">remove</button>';
+        addLi.innerHTML += ' <button class="btn-remove" onclick="this.parentNode.remove()"><i class="fas fa-trash"></i></button>';
+        // addLi.innerHTML += '<span class="qoute-li" onclick="this.parentNode.remove()"><i class="fas fa-trash"></i></span>'
         qoutesList.appendChild(addLi); // append li node to list
         
         qoutesInput.value = ""; // clear input
