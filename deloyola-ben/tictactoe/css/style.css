@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #090c10;
+}
+body .select-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #21262d;
+  padding: 20px 25px 25px;
+  color: #fff;
+  border-radius: 5px;
+  max-width: 330px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+body .select-box header {
+  font-size: 23px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+body .select-box .title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 20px 0;
+}
+body .select-box .options {
+  display: flex;
+  width: 100%;
+}
+body .select-box .options button {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 0;
+  border: none;
+  outline: none;
+  background: #4e4e4e;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+body .select-box .options button:hover {
+  transform: scale(0.95);
+  background: #090c10;
+}
+body .select-box .options button.playerX {
+  margin-right: 5px;
+}
+body .select-box .options button.playerO {
+  margin-right: 5px;
+}
+
+.switch-mode {
+  display: flex;
+  justify-content: center;
+}
+.switch-mode button {
+  position: absolute;
+  top: 20%;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border: none;
+  outline: none;
+  background: #4e4e4e;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.switch-mode button:hover {
+  transform: scale(0.95);
+  background: #090c10;
+}
+
+.select-box.hide {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.play-board {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.play-board.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.select-box,
+.play-board,
+.result-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+.select-box .details,
+.play-board .details,
+.result-box .details {
+  background: #21262d;
+  padding: 7px;
+  border-radius: 5px;
+}
+.select-box .details .players,
+.play-board .details .players,
+.result-box .details .players {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: relative;
+}
+.select-box .details span,
+.play-board .details span,
+.result-box .details span {
+  width: 100%;
+  border-radius: 5px;
+  padding: 7px 0;
+  font-weight: 500;
+  cursor: default;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  transition: all 0.3s ease;
+}
+.select-box .details span:first-child,
+.play-board .details span:first-child,
+.result-box .details span:first-child {
+  color: #fff;
+}
+.select-box .details .slider,
+.play-board .details .slider,
+.result-box .details .slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: #090c10;
+  border-radius: 5px;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+.select-box .play-area,
+.play-board .play-area,
+.result-box .play-area {
+  margin-top: 20px;
+}
+.select-box .play-area section,
+.play-board .play-area section,
+.result-box .play-area section {
+  display: flex;
+}
+.select-box .play-area section span,
+.play-board .play-area section span,
+.result-box .play-area section span {
+  display: block;
+  margin: 3px;
+  height: 80px;
+  width: 80px;
+  background: #21262d;
+  border-radius: 5px;
+  font-size: 40px;
+  text-align: center;
+  line-height: 80px;
+}
+
+.players.active span:first-child {
+  color: #090c10;
+}
+
+.players.active span:last-child {
+  color: #fff;
+}
+
+.players.active .slider {
+  left: 50%;
+}
+
+.result-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 350px;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+.result-box .won-text {
+  font-size: 25px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  color: #000;
+}
+.result-box .won-text p {
+  font-weight: 700;
+  margin: 0 5px;
+}
+.result-box .btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.result-box .btn button {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border: none;
+  outline: none;
+  background: #4e4e4e;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.result-box .btn button:hover {
+  transform: scale(0.95);
+  background: #090c10;
+}
+
+.result-box.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/*# sourceMappingURL=style.css.map */
