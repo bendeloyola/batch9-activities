@@ -17,6 +17,7 @@ let historyTitle = document.querySelector("#historyTitle")
 let winner = document.querySelector("#winner");
 let winnerName = document.querySelector("#winnerName")
 let quit = document.querySelector("#quit")
+let resetBtn = document.querySelector("#resetBtn")
 
 //history button
 let historyBtn = document.querySelector("#historyBtn")
@@ -66,7 +67,9 @@ historyBtn.addEventListener("click", () => {
 })
 
 let boardArray = []
+let prevBoardArray = []
 let previousMoveArray = [];
+let nextArray = []
 
 boxes.forEach(items =>{
     items.addEventListener("click", (e)=>{
@@ -87,9 +90,8 @@ boxes.forEach(items =>{
         // add X icon if change turn = false
         // add O icon if change turn = true
         if(changeTurn == false){
-            items.innerHTML = X
             items.id = "X";
-            saveMove(cell, 'X');
+            saveMove(items, X);
             
             items.style.pointerEvents = "none"
             showChange.style.left = '160px'
@@ -97,9 +99,9 @@ boxes.forEach(items =>{
             // change the "change turn" value flase into true
             changeTurn = true
         } else {
-            items.innerHTML = O
+          
             items.id = "O";
-            saveMove(cell, 'O');
+            saveMove(items, O);
             
            items.style.pointerEvents = "none"
             showChange.style.left = '0px'
@@ -113,13 +115,15 @@ boxes.forEach(items =>{
     })
 })
 
-function saveMove(items, player) {
+let saveMove = (items, player) => {
     let moveObject = {};
     moveObject.items = items;
     moveObject.player = player;
+    items.innerHTML = player
+    
     //add move to board
     boardArray.push(moveObject);
-    console.log(boardArray);
+    // console.log(boardArray);
 }
 
 
@@ -127,24 +131,49 @@ function saveMove(items, player) {
 previousBtn.addEventListener('click', () => {
     nextBtn.style.visibility = 'visible'
     if (boardArray.length != 0) {
-        let lastMove = boardArray[boardArray.length - 1]; //move object
-        console.log(lastMove);
-        // let targetCell = boxes[parseInt(lastMove.cell)];
-        // console.log(targetCell);
-        // let current = targetCell.boardArray.remove(targetCell.classList[2]);
-        let current = boardArray.pop(lastMove)
-        console.log(current);
-        previousMoveArray.push(lastMove);
-        // boardArray.pop();
-        console.log(boardArray);
+        
+        let lastMove = boardArray[boardArray.length - 1]; 
+        let lastChild = lastMove.items.removeChild(lastMove.items.lastElementChild)
+        
+        let lastItemInBoard = boardArray.pop()
+        console.log('boardArray:', boardArray);
+        prevBoardArray.push(lastItemInBoard)
+
+        previousMoveArray.push(lastChild);
+        nextArray.push(lastMove.items)
+        
+        if(boardArray.length === 0){
+            previousBtn.style.visibility = 'hidden';
+        }
     } else {
         previousBtn.style.visibility = 'hidden';
     }
 });
 
+//next button
+nextBtn.addEventListener('click', () => {
+    previousBtn.style.visibility = 'visible';
+    if (previousMoveArray.length != 0) {
+      
+        let lastElementDiv = nextArray.slice(-1);
+        let lastElementI = previousMoveArray.slice(-1);
+        let lastChild = lastElementDiv[0].appendChild(lastElementI[0]);
+  
+        console.log('lastChild:', lastChild);
+ 
+        nextArray.pop()
+        previousMoveArray.pop()
+        let lastItemInPrevBoard = prevBoardArray.pop();
+        boardArray.push(lastItemInPrevBoard);
 
-
-
+        if(prevBoardArray.length === 0){
+            nextBtn.style.visibility = 'hidden';
+        }
+    } else {
+        nextBtn.style.visibility = 'hidden';
+        previousBtn.style.visibility = 'visible';
+    }
+})
 
 // all possible winning combinations
 let winningCombinations = [
@@ -168,7 +197,7 @@ let winningFunc = () => {
         } else if(boxes[b[0]].id == "X" && boxes[b[1]].id == "X" && boxes[b[2]].id == "X"){
             // console.log("x winner");
             // add winner text
-            winnerName.innerText = `Player X win`
+            winnerName.innerHTML = `Player ${X} Win`
 
             //show winner page & hide main page
             mainPage.style.display = "none"
@@ -177,7 +206,7 @@ let winningFunc = () => {
         } else if(boxes[b[0]].id == "O" && boxes[b[1]].id == "O" && boxes[b[2]].id == "O"){
             // console.log("o winner");
              // add winner text
-             winnerName.innerText = `Player O win`
+             winnerName.innerHTML= `Player ${O} Win`
 
              //show winner page & hide main page
              mainPage.style.display = "none"
@@ -207,5 +236,10 @@ let drawFunc = () => {
 
 //reset game
 quit.addEventListener("click", () => {
+    window.location.reload();
+})
+
+
+resetBtn.addEventListener("click", () =>{
     window.location.reload();
 })

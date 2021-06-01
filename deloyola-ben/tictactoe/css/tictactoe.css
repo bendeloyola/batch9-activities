@@ -1,0 +1,215 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background: #090c10;
+}
+
+#container {
+  height: auto;
+  width: auto;
+  background: #21262d;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: inset 1px 2px 0px rgba(255, 255, 255, 0.18), inset -2px -2px 2px rgba(0, 0, 0, 0.65);
+}
+#container #startingPage {
+  height: 220px;
+  width: 400px;
+}
+#container #startingPage h2 {
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+}
+#container #startingPage #line {
+  height: 1px;
+  width: 100%;
+  background: #fff;
+  margin: 20px 0;
+}
+#container #startingPage h4 {
+  font-size: 25px;
+  color: #fff;
+  text-align: center;
+}
+
+#button {
+  height: auto;
+  width: 100%;
+  margin: 30px 0;
+  display: flex;
+  flex-direction: row;
+}
+#button button {
+  height: 55px;
+  width: 180px;
+  cursor: pointer;
+  background: #090c10;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 10px;
+  transform: scale(1);
+  transition: 0.5s;
+}
+#button button:first-child {
+  margin-right: 40px;
+}
+#button button:hover {
+  transform: scale(0.9);
+}
+
+.history-buttons {
+  display: none;
+}
+.history-buttons #buttons {
+  display: flex;
+  width: 345px;
+  justify-content: space-between;
+}
+.history-buttons #buttons button {
+  height: 55px;
+  width: 180px;
+  margin: 5px;
+  cursor: pointer;
+  background: #090c10;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 10px;
+  transform: scale(1);
+  transition: 0.5s;
+}
+.history-buttons #buttons #nextBtn {
+  visibility: hidden;
+}
+.history-buttons #buttons button:hover {
+  transform: scale(0.9);
+}
+
+#winner {
+  display: none;
+}
+#winner h2 {
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+}
+#winner #button {
+  height: auto;
+  width: 100%;
+  justify-content: center;
+  justify-items: center;
+}
+#winner #button button {
+  margin-top: 20px;
+}
+
+#mainPage {
+  height: 550px;
+  width: 350px;
+  padding: 20px;
+  position: relative;
+  display: none;
+}
+#mainPage #historyTitle {
+  text-align: center;
+  font-size: 5vw;
+  display: none;
+  color: #fff;
+  margin: 0;
+}
+#mainPage #headerBtns {
+  height: 60px;
+  width: 310px;
+  border-radius: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+#mainPage #headerBtns button {
+  height: 60px;
+  width: 160px;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 20px;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+#mainPage #headerBtns #oTurn {
+  left: 160px;
+  z-index: 3;
+}
+#mainPage #headerBtns #showChange {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 160px;
+  border-radius: 50px;
+  background: #090c10;
+  z-index: 1;
+  transition: 0.2s;
+}
+
+#gameBoard {
+  height: 400px;
+  width: 330px;
+  position: absolute;
+  top: 150px;
+  left: 10px;
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-gap: 15px;
+}
+#gameBoard .boxes {
+  height: 100px;
+  width: 100px;
+  background: #090c10;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#gameBoard .boxes i {
+  font-size: 60px;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  #mainPage #historyTitle {
+    text-align: center;
+    font-size: 10vw;
+    display: none;
+    color: #fff;
+    margin: 0;
+  }
+}
+@media (max-width: 450px) {
+  #mainPage #historyTitle {
+    text-align: center;
+    font-size: 63px;
+    display: none;
+    color: #fff;
+    margin: 0;
+  }
+}
+
+/*# sourceMappingURL=tictactoe.css.map */
