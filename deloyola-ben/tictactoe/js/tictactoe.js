@@ -23,7 +23,7 @@ let resetBtn = document.querySelector("#resetBtn")
 let historyBtn = document.querySelector("#historyBtn")
 let prevNextBtnsContainer = document.querySelector(".history-buttons")
 
-// next and 
+// next and previous
 let previousBtn = document.querySelector('#previousBtn');
 let nextBtn = document.querySelector('#nextBtn');
 
@@ -72,20 +72,7 @@ let previousMoveArray = [];
 let nextArray = []
 
 boxes.forEach(items =>{
-    items.addEventListener("click", (e)=>{
-
-        //know wich cell was clicked
-        const target = e.target;
-        //check list of classes
-        const classList = target.classList;
-        //select second class as identifier of cell location
-        const cell = classList[1];
-        //add class to cell if xturn or not
-        const player = classList[2];
-         //if class already contains x or o
-        if (player === 'X' || player === 'O') {
-            return;
-        }
+    items.addEventListener("click", ()=>{
 
         // add X icon if change turn = false
         // add O icon if change turn = true
@@ -138,6 +125,8 @@ previousBtn.addEventListener('click', () => {
         let lastItemInBoard = boardArray.pop()
         console.log('boardArray:', boardArray);
         prevBoardArray.push(lastItemInBoard)
+        
+        console.log('prevBoardArray:', prevBoardArray);
 
         previousMoveArray.push(lastChild);
         nextArray.push(lastMove.items)
@@ -159,7 +148,8 @@ nextBtn.addEventListener('click', () => {
         let lastElementI = previousMoveArray.slice(-1);
         let lastChild = lastElementDiv[0].appendChild(lastElementI[0]);
   
-        console.log('lastChild:', lastChild);
+        console.log('prevBoardArray:', prevBoardArray);
+        console.log('boardArray:', boardArray);
  
         nextArray.pop()
         previousMoveArray.pop()
@@ -192,13 +182,11 @@ let winningFunc = () => {
         let b = winningCombinations[a];
         // console.log(b);
 
-        if(boxes[b[0]].id == "" || boxes[b[1]].id == "" || boxes[b[2]].id == ""){
-            continue;
-        } else if(boxes[b[0]].id == "X" && boxes[b[1]].id == "X" && boxes[b[2]].id == "X"){
+         if(boxes[b[0]].id == "X" && boxes[b[1]].id == "X" && boxes[b[2]].id == "X"){
             // console.log("x winner");
             // add winner text
             winnerName.innerHTML = `Player ${X} Win`
-
+            console.log(boxes);
             //show winner page & hide main page
             mainPage.style.display = "none"
             winner.style.display = "block"
@@ -211,9 +199,7 @@ let winningFunc = () => {
              //show winner page & hide main page
              mainPage.style.display = "none"
              winner.style.display = "block"
-        } else {
-            continue;
-        }
+        } 
     }
 }
 
