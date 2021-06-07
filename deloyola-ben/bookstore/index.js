@@ -1,11 +1,11 @@
-let store = {
-    name: 'My Store',
-    inventoryList:[],
-    earnings: 0
-}
+let store = function(name, inventoryList, earnings){
+    this.name = name,
+    this.inventoryList = inventoryList,
+    this.earnings = earnings
+}  
 
 
-function book(title, quantity, value){
+let book = function(title, quantity, value){
     this.title = title,
     this.quantity = quantity,
     this.value = value
@@ -13,66 +13,94 @@ function book(title, quantity, value){
 
 function addBook(title, quantity, value){
    let newBook = new book(title, quantity, value)
-   store.inventoryList.push(newBook)
+  
+   myStore.inventoryList.push(newBook)
+ 
 }
+
+let myStore = new store('National Ben Store XD', [], 0)
+addBook('Legend', 50, 200)
+addBook('Cinder', 50, 50)
+// console.log(myStore.inventoryList);
 
 // check kung existing na ang book add nalang quantity, pag di pa add yung book.
-function restockBook(title, quantity){
+let restockBook = (title, quantity) =>{
 
-    let newTitle = title;
-    let newQuantity = quantity
-    if (store.inventoryList.some(({title}) => title === newTitle)) { // pag check kung existing na ang book title
-        
-        for (let i = 0; i < store.inventoryList.length; i++) { // check existing quantity ni book
-           
-            console.log( store.inventoryList[i].quantity);
-            for(let j = 0; j < store.inventoryList[i].quantity.length; j++){
-                store.inventoryList[i].quantity += newQuantity // add bagong quantity
-            }
-           
-        }
-       
+    let bookExist = myStore.inventoryList.findIndex((book) => book.title === title); // check kung exist na ang book title at find the index key of it.
+
+    if (bookExist === -1) {
+        return addBook(title, quantity, 500)
     } else {
-        console.log('not exist');
-        addBook(title, quantity) // add book kasi di pa exist
+        return myStore.inventoryList[bookExist].quantity += quantity
     }
-  
 }
 
-addBook('Americanah', 5, 25)
+// console.log(myStore.inventoryList[0].title);
+restockBook('Cinder', 2)
+restockBook('Cinder', 5)
+restockBook('Legend', 1)
+restockBook('Island', 5)
+// console.log(myStore.inventoryList);
+
+let sellBook = (title, quantity) => {
+
+    let bookAvailable = myStore.inventoryList.findIndex((book) => book.title === title);
+    // let bookQty = myStore.inventoryList[bookAvailable].quantity   // question later
+
+    if(bookAvailable === -1 || myStore.inventoryList[bookAvailable].quantity === 0){
+        console.log(`${title} out of stock\n`)
+    } else if(myStore.inventoryList[bookAvailable].quantity < quantity) {
+        console.log(`${title} only ${myStore.inventoryList[bookAvailable].quantity} stocks left\n`);
+    } else {
+        let sales = myStore.inventoryList[bookAvailable].quantity - quantity
+        myStore.inventoryList[bookAvailable].quantity = sales;
+        let newEarnings =  myStore.inventoryList[bookAvailable].value * quantity
+        myStore.earnings += newEarnings
+    }
+
+}
+
+// Create our number formatter.
+var formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  
+    // These options are needed to round to whole numbers if that's what you want.
+    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+  });
+
+sellBook('Legend', 50)
+sellBook('Legend', 4)
+sellBook('Island', 4)
+sellBook('Cinder', 20)
+sellBook('Island', 1)
+// console.log(myStore.inventoryList);
 
 
-// console.log(store.inventoryList);
+let totalEarnings = () => {
+    let formatCurrency = formatter.format(myStore.earnings);
+    console.log(`Store Name: ${myStore.name} \nEarnings: ${formatCurrency}\n`);
+}
 
-restockBook('carolina', 1)
-restockBook('carolina', 2)
+let listInventory = () => {
+    // myStore.inventoryList.forEach(books => {
+    //     console.log(`Title: ${books.title} \nQuantity: ${books.quantity} \nValue: ${books.value}`);
+    // })
 
+    //  let bookTitles = myStore.inventoryList.map(function(book){ return book.title });
+    //  let bookQuantity = myStore.inventoryList.map(function(book){ return book.quantity });
+    //  let bookValue = myStore.inventoryList.map(function(book){ return book.value });
 
-console.log(store.inventoryList);
+    // console.log(`Title                    Quantity                   Value`);
+    console.log(`Title\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Quantity\u00A0\u00A0\u00A0\u00A0Value`);
+    myStore.inventoryList.forEach(books => {
+     
+        console.table(`${books.title}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${books.quantity}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${books.value}`);
+    })
+    // console.log(`${bookTitles}    ${bookQuantity}    ${bookValue}`);
+    
+}
 
-//  let newAdded = new Store('asdsad', )
-
-// let newBook = new Book('Americanah', 5, 25);
-
-
-// console.log(newInStore.inventoryList);
-// let newAdded =  newInStore.inventoryList
-
-// function restockBook(title, quantity){
-//     // let exsisting = newInStore.inventoryList.includes(title)
-//     // console.log(exsisting);
-//     // console.log(addToStore);
-//     // let result = addToStore.inventoryList.includes(title)
-//     // if(addToStore == true){
-//     //     console.log('true');
-//     //     let addBook = bookDetails(newBook)
-//     // } else {
-//     //     let addBook = new Store(null, newBook, null)
-//     //     console.log(addBook.inventoryList);
-//     // }
-// }
-
-// restockBook('Americanah', 2)
-
-// // console.log(newInStore.inventoryList);
-// // console.log(newInStore);
+totalEarnings()
+listInventory()
