@@ -33,6 +33,7 @@ class BookStore extends MainStore{
         let newBook = {title: title, quantity: quantity, value: value}
         this.list.push(newBook)
         this.parentStore.list.push(newBook)
+        return this
       }
 
     restock(title, quantity){
@@ -69,7 +70,7 @@ class BookStore extends MainStore{
     }
 }
 
-// Object.assign(SellBook.prototype, logAndFindMixin)
+Object.assign(MainStore.prototype, logAndFindMixin)
 
 // just a number format
 var formatter = new Intl.NumberFormat('en-US', {
@@ -84,18 +85,18 @@ var formatter = new Intl.NumberFormat('en-US', {
 
 let avionStore = new MainStore("Avion Store", [], 0)
 let avionBookStore = new BookStore("Avion Book Store", [], 0, avionStore)
+console.log(avionBookStore);
+avionBookStore.addBook("Potter", 5, 500).add()
+avionBookStore.addBook("Cinder", 10, 200).add()
+// avionBookStore.restock("Potter", 5)
+// avionBookStore.sellBook("Potter", 2)
+// avionBookStore.sellBook("Cinder", 2)
 
-avionBookStore.addBook("Potter", 5, 500)
-avionBookStore.addBook("Cinder", 10, 200)
-avionBookStore.restock("Potter", 5)
-avionBookStore.sellBook("Potter", 2)
-avionBookStore.sellBook("Cinder", 2)
-
-console.log(avionStore.list);
+// console.log(avionStore);
 console.log(avionBookStore.list);
 
-avionStore.totalEarnings();
-avionStore.currentList();
+// avionStore.totalEarnings();
+// avionStore.currentList();
 
-avionBookStore.totalEarnings()
-avionBookStore.currentList()
+// avionBookStore.totalEarnings()
+// avionBookStore.currentList()

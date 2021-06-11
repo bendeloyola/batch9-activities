@@ -1,128 +1,72 @@
-// class Store{
-//     constructor(first, second, third){
-//         this.first = first
-//         this.second = second
-//         this.third = third
-//     }
-
-//     addStore(){
-//         console.log(this.first, this.second, this.third);
-//     }
-// }
-
-class Store{
-    constructor(store){
-        this.store = []
-    }
-
-    storeLog(){
-        console.log(this.store);
-    }
-}
-
-let stores = new Store()
-stores.storeLog()
-
-class MainStore extends Store{
+class MainStore{
     constructor(name, list, earnings){
-        super()
         this.name = name
         this.list = list
         this.earnings = earnings
     }
-    
-    addStore(){
-        let stores = {store: this.name, list: this.list, earnings: this.earnings}
-        this.store.push(stores)
+
+    totalEarnings(){
+        let formatCurrency = formatter.format(this.earnings);
+        console.log(`Store Name: ${this.name} \nEarnings: ${formatCurrency}\n`);
     }
-    
+
+    currentList(){
+        console.log(`Title\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Quantity\u00A0\u00A0\u00A0\u00A0\u00A0Value`);
+        this.list.map(book => {
+            let formatCurrency = formatter.format(book.value);
+            console.table(`${book.title}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${book.quantity}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${formatCurrency}`);
+        })
+        // console.log(`${bookTitles}    ${bookQuantity}    ${bookValue}`);
+    }
 }
 
-let sampleStore = new MainStore("Avion Store", [], 0);
-sampleStore.addStore()
-let laptopStore = new MainStore("Asus", [], 0);
-laptopStore.addStore()
 
-class Book extends MainStore{
-    constructor(title, quantity, value){
-        super()
-        this.title = title
-        this.quantity = quantity
-        this.value = value
+class BookStore extends MainStore{
+    constructor(name, list, earnings, parentStore){
+        super(name, list, earnings)
+        this.parentStore = parentStore
     }
 
-    addBook(){
-        // console.log(sampleStore);
-        let newBook = {title: this.title, quantity: this.quantity, value: this.value}
-        sampleStore.list.push(newBook)
-        // console.log(sampleStore.list);
+    addBook(title, quantity, value){
+        let newBook = {title: title, quantity: quantity, value: value}
+        this.list.push(newBook)
+        this.parentStore.list.push(newBook)
+        return this
       }
-    
-    findBook(){
-        sampleStore.list.find(book => book.title === this.title)
-    }
-  
-}
 
-let mybook = new Book("Potter", 5, 500);
-let newBook = new Book("Cinder", 10, 300);
-mybook.addBook()
-newBook.addBook()
-
-class Restock extends Book{
-    constructor(title, quantity) {
-        super()
-        this.title = title
-        this.quantity = quantity
-    }
-
-    findBook(){
-
-        sampleStore.list.find(book => {
-            if (book.title === this.title){
-                book.quantity += this.quantity;
+    restock(title, quantity){
+        this.list.find(book => {
+            if (book.title === title){
+                book.quantity += quantity;
+            } else {
+                console.log(`${title} is not available`);
             }
         })
     }
-
-}
-
-let restockBooks = new Restock("Potter", 1);
-
-restockBooks.findBook()
-
-class SellBook extends Restock{
-    constructor(title, quantity){
-        super()
-        this.title = title
-        this.quantity = quantity
-    }
-
-    findBook(){
-        // super.findBook()
-        // console.log(sampleStore.list[index].quantity);
-        let bookIndex = sampleStore.list.findIndex(book => book.title === this.title)
-
+    sellBook(title, quantity){
+        let bookIndex = this.list.findIndex(book => book.title === title)
         if (bookIndex !== -1) {
             const {
               title: StoreTitle,
               quantity: Stock,
               value: Price,
-            } = sampleStore.list[bookIndex];
-        
-            console.log('Successful transaction');
-        
-            (Stock < this.quantity) ? console.log(`${StoreTitle} has only ${Stock} left`) : sampleStore.list[bookIndex].quantity -= this.quantity; sampleStore.earnings += this.quantity * Price;
-        
+            } = this.list[bookIndex];
+
+            if(Stock >= quantity) {
+                console.log('Successful transaction')
+                this.list[bookIndex].quantity -= quantity
+                let earnings = this.earnings += quantity * Price
+                this.parentStore.earnings = earnings
+            }
+            else{
+                console.log(`${StoreTitle} has only ${Stock} left`) 
+            }
+                
         } else {
-            console.log(`We don't sell ${this.title} book here`);
-        }
+            console.log(`We don't sell ${title} book here`);
+        }  
     }
-
 }
-
-let newSell = new SellBook("Harry Potter", 2);
-newSell.findBook()
 
 
 // just a number format
@@ -133,36 +77,20 @@ var formatter = new Intl.NumberFormat('en-US', {
     // These options are needed to round to whole numbers if that's what you want.
     //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
     //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-  });
+});
 
-class totalEarnings extends MainStore{
-    constructor(){
-       super()
-    }   
 
-    total(){
-        let formatCurrency = formatter.format(sampleStore.earnings);
-        console.log(`Store Name: ${sampleStore.name} \nEarnings: ${formatCurrency}\n`);
-    }
+let avionStore = new MainStore("Avion Store", [], 0)
+let avionBookStore = new BookStore("Avion Book Store", [], 0, avionStore)
 
-}
+avionBookStore.addBook("Potter", 5, 500)
+avionBookStore.addBook("Cinder", 10, 200)
+avionBookStore.restock("Potter", 5)
+avionBookStore.sellBook("Potter", 2)
+avionBookStore.sellBook("Cinder", 2)
 
-class ListInventory extends MainStore{
-    constructor(){
-        super()
-    }
+avionStore.totalEarnings();
+avionStore.currentList();
 
-    currentList(){
-        console.log(`Title\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Quantity\u00A0\u00A0\u00A0\u00A0\u00A0Value`);
-        sampleStore.list.map(books => {
-            let formatCurrency = formatter.format(books.value);
-            console.table(`${books.title}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${books.quantity}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${formatCurrency}`);
-        })
-        // console.log(`${bookTitles}    ${bookQuantity}    ${bookValue}`);
-    }
-}
-
-let totalEarn = new totalEarnings();
-totalEarn.total()
-let totalList = new ListInventory();
-totalList.currentList()
+avionBookStore.totalEarnings()
+avionBookStore.currentList()

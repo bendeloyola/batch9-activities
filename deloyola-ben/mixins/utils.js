@@ -5,7 +5,7 @@ export let logAndFindMixin = {
     sell() {
         console.log(`${this.name} : Successful transaction`);
     },
-    restock(){
+    restockBook(){
         console.log(`${this.name} : Restocked book`);
     },
     errors(){
