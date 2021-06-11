@@ -11,6 +11,8 @@ let book = function(title, quantity, value){
     this.value = value
 }   
 
+let myStore = new store('National Ben Store XD', [], 0)
+
 function addBook(title, quantity, value){
    let newBook = new book(title, quantity, value)
   
@@ -18,7 +20,6 @@ function addBook(title, quantity, value){
  
 }
 
-let myStore = new store('National Ben Store XD', [], 0)
 addBook('Legend', 50, 200)
 addBook('Cinder', 50, 50)
 // console.log(myStore.inventoryList);
@@ -52,12 +53,10 @@ let sellBook = (title, quantity) => {
     } else if(myStore.inventoryList[bookAvailable].quantity < quantity) {
         console.log(`${title} only ${myStore.inventoryList[bookAvailable].quantity} stocks left\n`);
     } else {
-        let sales = myStore.inventoryList[bookAvailable].quantity - quantity
-        myStore.inventoryList[bookAvailable].quantity = sales;
+        myStore.inventoryList[bookAvailable].quantity -= quantity
         let newEarnings =  myStore.inventoryList[bookAvailable].value * quantity
         myStore.earnings += newEarnings
     }
-
 }
 
 // Create our number formatter.
@@ -71,7 +70,7 @@ var formatter = new Intl.NumberFormat('en-US', {
   });
 
 sellBook('Legend', 50)
-sellBook('Legend', 4)
+sellBook('Legend', 1)
 sellBook('Island', 4)
 sellBook('Cinder', 20)
 sellBook('Island', 1)
@@ -94,7 +93,7 @@ let listInventory = () => {
 
     // console.log(`Title                    Quantity                   Value`);
     console.log(`Title\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Quantity\u00A0\u00A0\u00A0\u00A0Value`);
-    myStore.inventoryList.forEach(books => {
+    myStore.inventoryList.map(books => {
      
         console.table(`${books.title}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${books.quantity}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${books.value}`);
     })
