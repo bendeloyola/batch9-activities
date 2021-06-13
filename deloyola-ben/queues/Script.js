@@ -42,6 +42,7 @@ class Queue {
 
 
 let q = new Queue(3,2)
+let r = new Queue(null)
 
 q.enqueue(1)
 q.enqueue(2)

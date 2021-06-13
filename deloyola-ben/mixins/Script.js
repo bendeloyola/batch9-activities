@@ -33,6 +33,7 @@ class BookStore extends MainStore{
         let newBook = {title: title, quantity: quantity, value: value}
         this.list.push(newBook)
         this.parentStore.list.push(newBook)
+        logAndFindMixin.add(title)
         return this
       }
 
@@ -41,7 +42,8 @@ class BookStore extends MainStore{
             if (book.title === title){
                 book.quantity += quantity;
             } else {
-                console.log(`${title} is not available`);
+                // console.log(`${title} is not available`);
+                logAndFindMixin.restockBook(title)
             }
         })
     }
@@ -55,17 +57,19 @@ class BookStore extends MainStore{
             } = this.list[bookIndex];
 
             if(Stock >= quantity) {
-                console.log('Successful transaction')
+                logAndFindMixin.sell(title)
                 this.list[bookIndex].quantity -= quantity
                 let earnings = this.earnings += quantity * Price
                 this.parentStore.earnings = earnings
             }
             else{
-                console.log(`${StoreTitle} has only ${Stock} left`) 
+                // console.log(`${StoreTitle} has only ${Stock} left`) 
+                logAndFindMixin.stocks(StoreTitle, Stock)
             }
                 
         } else {
-            console.log(`We don't sell ${title} book here`);
+            // console.log(`We don't sell ${title} book here`);
+            logAndFindMixin.errors(title)
         }  
     }
 }
@@ -85,14 +89,16 @@ var formatter = new Intl.NumberFormat('en-US', {
 
 let avionStore = new MainStore("Avion Store", [], 0)
 let avionBookStore = new BookStore("Avion Book Store", [], 0, avionStore)
-console.log(avionBookStore);
-avionBookStore.addBook("Potter", 5, 500).add()
-avionBookStore.addBook("Cinder", 10, 200).add()
-// avionBookStore.restock("Potter", 5)
-// avionBookStore.sellBook("Potter", 2)
-// avionBookStore.sellBook("Cinder", 2)
 
-// console.log(avionStore);
+avionBookStore.addBook("Potter", 5, 500)
+avionBookStore.addBook("Cinder", 10, 200)
+avionBookStore.restock("Potter", 5)
+avionBookStore.sellBook("Potter", 9)
+avionBookStore.sellBook("Cinder", 2)
+// avionBookStore.add(avionBookStore.list.title)
+// console.log(avionBookStore.list.title);
+
+// console.log(avionBookStore);
 console.log(avionBookStore.list);
 
 // avionStore.totalEarnings();

@@ -1,14 +1,20 @@
 export let logAndFindMixin = {
-    add() {
-      console.log(`${this.title} : Successfuly Added book`);
+    add(title) {
+      console.log(`${title} : Successfuly Added book`);
     },
-    sell() {
-        console.log(`${this.name} : Successful transaction`);
+    sell(title) {
+        console.log(`${title} : Successful transaction`);
     },
-    restockBook(){
-        console.log(`${this.name} : Restocked book`);
+    restockBook(title){
+        console.log(`${title} : Restocked book`);
     },
-    errors(){
-        console.log(`${this.name} : Restocked book`);
-    }
+    errors(title){
+        console.log(`${title} : We don't sell ${title} book here`);
+    },
+    stocks(title, Stock){
+        console.log(`${title} : has only ${Stock} left`);
+    },
+    // find(title){
+
+    // }
   };
