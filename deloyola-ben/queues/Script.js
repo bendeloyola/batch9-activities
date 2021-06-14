@@ -2,37 +2,40 @@ class Queue {
     data = []
     maxSize
 
-    constructor(initialData, maxSize = -1){
-        this.data = Array.isArray(initialData) ? initialData : (typeof initialData == "undefined" ? [] : [initialData])
+    constructor(initialData, maxSize = -1) {
+        this.data = Array.isArray(initialData) ? initialData
+            : (typeof initialData == "undefined"
+                ? []
+                : [initialData])
         this.maxSize = maxSize
     }
 
-    isFull(){
+    isFull() {
         return this.maxSize != -1 ? (this.data.length == this.maxSize) : false
     }
-    
-    isEmpty(){
+
+    isEmpty() {
         return this.data.length == 0
     }
 
-    enqueue(item){
-        if(this.isFull()){
+    enqueue(item) {
+        if (this.isFull()) {
             return false
         }
         this.data.push(item)
     }
 
-    *generator(){
-        while(!this.isEmpty()){
+    *generator() {
+        while (!this.isEmpty()) {
             yield this.data.shift() // 1, false
         }
     }
 
-    dequeue(){
+    dequeue() {
         const { value, done } = this.generator().next()
-        if(done) {
+        if (done) {
             return false
-        } else{
+        } else {
             return value
         }
     }
@@ -41,17 +44,18 @@ class Queue {
 }
 
 
-let q = new Queue(3,2)
-let r = new Queue(null)
+let q = new Queue(3, 2)
+let r = new Queue(undefined)
 
 q.enqueue(1)
 q.enqueue(2)
 
 console.log(q.data);
+console.log(r.data);
 
 
 let x = 0
 
-while(x = q.dequeue()){
+while (x = q.dequeue()) {
     console.log(x);
 }
