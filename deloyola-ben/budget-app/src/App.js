@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 
-//css
+//styles
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
+//components
 import Login from './LoginAndRegistration/Login'
 import LandingPage from './LandingPage/LandingPage';
 import Dashboard from './Dashboard/Dashboard'
@@ -38,6 +40,7 @@ function App() {
 
   const loginIsClicked = (clicked) => {
     setLoginClicked(clicked)
+    setError("")
   }
 
   return (

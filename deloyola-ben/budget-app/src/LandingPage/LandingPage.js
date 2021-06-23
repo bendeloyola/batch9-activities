@@ -9,7 +9,7 @@ const LandingPage = (props) => {
         props.loginIsClicked("clicked")
     }
     return (
-        <div className="container">
+        <div className="container-page">
             <div className="nav-content">
                 <h4>Budget App</h4>
                 <ul>
