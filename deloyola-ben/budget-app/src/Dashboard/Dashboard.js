@@ -10,6 +10,7 @@ import Budget from '../Budget/Budget'
 import Remaining from '../Budget/Remaining'
 import Spent from '../Budget/Spent'
 import ExpenseList from '../Expense/ExpenseList'
+import AddExpenseForm from '../Expense/AddExpenseForm'
 
 const Dashboard = (props) => {
     return (
@@ -32,6 +33,13 @@ const Dashboard = (props) => {
                     <ExpenseList/>
                 </div>
             </div>
+            <h3 className="mt-3">Add New Expense</h3>
+            <div className="mt-3">
+                <div className="col-sm">
+                    <AddExpenseForm/>
+                </div>
+            </div>
+            
             <button className="btn-logout" onClick={props.logout}>Log out</button>
         </div>
 

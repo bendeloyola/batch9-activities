@@ -1,10 +1,35 @@
 import React from 'react'
 
+//styles
+import './css/AddExpenseForm.css'
+
 const AddExpenseForm = (props) => {
     return (
-        <div>
-            
-        </div>
+        <form>
+            <div className="row">
+                <div className="col-sm">
+                    <label for="name">Name</label>
+                    <input 
+                        required="required" 
+                        type="text" 
+                        className="form-control" 
+                        id="name"
+                    ></input>
+                </div>
+                <div className="col-sm">
+                    <label for="cost">Cost</label>
+                    <input 
+                        required="required" 
+                        type="number" 
+                        className="form-control" 
+                        id="cost"
+                    ></input>
+                </div>
+                <div className="col-sm">
+                    <button type="submit" className="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
     )
 }
 

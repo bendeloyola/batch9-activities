@@ -39,7 +39,7 @@ const Login = ({Login, error, loginIsClicked}) => {
 
     return (
         <div className="container-page">
-            <form onSubmit={submitHandler}>
+            <form className="login-form" onSubmit={submitHandler}>
                 <div className="formInner">
                     <h2>Enter Credentials</h2>
                     
