@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+
+//css
+import './App.css'
+
+import Login from './LoginAndRegistration/Login'
+import LandingPage from './LandingPage/LandingPage';
+import Dashboard from './Dashboard/Dashboard'
 
 function App() {
+
+  const userAccount = {
+    username: "benjon",
+    password: "qweasd123"
+  } 
+
+  const [ user, setUser ] = useState({username: ""})
+  const [ error, setError ] = useState("")
+  const [ loginClicked, setLoginClicked ] = useState("")
+
+  const loginHandler = (details) => {
+    console.log(details)
+
+    if(details.username == userAccount.username && details.password == userAccount.password){
+      console.log("Logged in")
+      setUser({
+        username: details.username,
+      })
+    } else {
+      setError("Details not match")
+    }
+  }
+
+  const Logout = () => {
+      setUser({username: ""})
+      setError("")
+  } 
+
+  const loginIsClicked = (clicked) => {
+    setLoginClicked(clicked)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      { (loginClicked == "") ? ( 
+        <LandingPage loginIsClicked={loginIsClicked}/>
+        ) : 
+          (user.username != "") ? (
+            <Dashboard username={user.username} logout={Logout}/>
+        ) :
+        (
+          <Login Login={loginHandler} error={error} loginIsClicked={loginIsClicked}/>
+      )}
     </div>
   );
 }
 
 export default App;
+
