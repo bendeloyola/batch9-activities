@@ -11,37 +11,41 @@ import Remaining from '../Budget/Remaining'
 import Spent from '../Budget/Spent'
 import ExpenseList from '../Expense/ExpenseList'
 import AddExpenseForm from '../Expense/AddExpenseForm'
+import { AppProvider } from '../Context/AppContext'
 
 const Dashboard = (props) => {
     return (
-        <div className="container">
-            <h1 className="mt-3"> Welcome {props.username}</h1>
-            <div className="row mt-3">
-                <div className="col-sm">
-                    <Budget/>
+        <AppProvider>
+            <div className="container">
+                <h1 className="mt-3"> Welcome {props.username}</h1>
+                <div className="row mt-3">
+                    <div className="col-sm">
+                        <Budget/>
+                    </div>
+                    <div className="col-sm">
+                        <Remaining/>
+                    </div>
+                    <div className="col-sm">
+                        <Spent/>
+                    </div>
                 </div>
-                <div className="col-sm">
-                    <Remaining/>
+                <h3 className="mt-3">Expenses</h3>
+                <div className="row mt-3">
+                    <div className="col-sm">
+                        <ExpenseList/>
+                    </div>
                 </div>
-                <div className="col-sm">
-                    <Spent/>
+                <h3 className="mt-3">Add New Expense</h3>
+                <div className="row mt-3">
+                    <div className="col-sm">
+                        <AddExpenseForm/>
+                    </div>
                 </div>
+                
+                <button className="btn-logout" onClick={props.logout}>Log out</button>
             </div>
-            <h3 className="mt-3">Expenses</h3>
-            <div className="row mt-3">
-                <div className="col-sm">
-                    <ExpenseList/>
-                </div>
-            </div>
-            <h3 className="mt-3">Add New Expense</h3>
-            <div className="mt-3">
-                <div className="col-sm">
-                    <AddExpenseForm/>
-                </div>
-            </div>
-            
-            <button className="btn-logout" onClick={props.logout}>Log out</button>
-        </div>
+        </AppProvider>
+        
 
         // <div className="welcome">
         //     <h2>Welcome, <span>{props.username}</span></h2>

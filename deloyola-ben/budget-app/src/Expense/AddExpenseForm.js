@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 //styles
 import './css/AddExpenseForm.css'
 
 const AddExpenseForm = (props) => {
+
+    const [name, setName] = useState('')
+    const [cost, setCost] = useState('')
+
+    const nameHandleOnchange = (e) => {
+        setName(e.target.value)
+    }
+
+    const costHandleOnchange = (e) => {
+        setCost(e.target.value)
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        console.log(`name: ${name} cost: ${cost}`)
+    }
+
     return (
-        <form>
+        <form onSubmit={onSubmit}>
             <div className="row">
                 <div className="col-sm">
                     <label for="name">Name</label>
@@ -14,6 +31,9 @@ const AddExpenseForm = (props) => {
                         type="text" 
                         className="form-control" 
                         id="name"
+                        value={name}
+                        onChange={nameHandleOnchange}
+                        autoComplete="off"
                     ></input>
                 </div>
                 <div className="col-sm">
@@ -23,10 +43,15 @@ const AddExpenseForm = (props) => {
                         type="number" 
                         className="form-control" 
                         id="cost"
+                        value={cost}
+                        onChange={costHandleOnchange}
+                        autoComplete="off"
                     ></input>
                 </div>
                 <div className="col-sm">
-                    <button type="submit" className="btn btn-primary">Save</button>
+                    <div className="mt-4">
+                        <button type="submit" className="btn btn-primary" size="lg" block>Save</button>
+                    </div>
                 </div>
             </div>
         </form>
