@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { AppContext } from '../Context/AppContext'
+import { v4 as uuidv4 } from 'uuid'
 
 //styles
 import './css/AddExpenseForm.css'
 
 const AddExpenseForm = (props) => {
+
+    const { dispatch } = useContext(AppContext)
 
     const [name, setName] = useState('')
     const [cost, setCost] = useState('')
@@ -18,14 +22,27 @@ const AddExpenseForm = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(`name: ${name} cost: ${cost}`)
+        // console.log(`name: ${name} cost: ${cost}`)
+        const expense =  {
+            id: uuidv4(),
+            name: name,
+            cost: parseInt(cost)
+        }
+
+        dispatch({
+            type: 'ADD_EXPENSE',
+            payload: expense
+        })
+
+        setName('')
+        setCost('')
     }
 
     return (
         <form onSubmit={onSubmit}>
             <div className="row">
                 <div className="col-sm">
-                    <label for="name">Name</label>
+                    <label htmlFor="name">Name</label>
                     <input 
                         required="required" 
                         type="text" 
@@ -37,7 +54,7 @@ const AddExpenseForm = (props) => {
                     ></input>
                 </div>
                 <div className="col-sm">
-                    <label for="cost">Cost</label>
+                    <label htmlFor="cost">Cost</label>
                     <input 
                         required="required" 
                         type="number" 
