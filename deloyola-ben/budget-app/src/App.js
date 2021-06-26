@@ -29,7 +29,7 @@ function App() {
         username: details.username,
       })
     } else {
-      setError("Details not match")
+      setError("Credential not match")
     }
   }
 

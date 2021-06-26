@@ -38,6 +38,17 @@ const AddExpenseForm = (props) => {
         setCost('')
     }
 
+    const inputStyle = {
+        backgroundColor: 'transparent',
+        color: 'white'
+    }
+
+    const btnSave = {
+        width: '100%',
+        backgroundColor: '#3F77A0',
+        color: 'white'
+    }
+
     return (
         <form onSubmit={onSubmit}>
             <div className="row">
@@ -51,6 +62,7 @@ const AddExpenseForm = (props) => {
                         value={name}
                         onChange={nameHandleOnchange}
                         autoComplete="off"
+                        style={inputStyle}
                     ></input>
                 </div>
                 <div className="col-sm">
@@ -63,11 +75,12 @@ const AddExpenseForm = (props) => {
                         value={cost}
                         onChange={costHandleOnchange}
                         autoComplete="off"
+                        style={inputStyle}
                     ></input>
                 </div>
                 <div className="col-sm">
                     <div className="mt-4">
-                        <button type="submit" className="btn btn-primary" size="lg" block>Save</button>
+                        <button type="submit" className="btn" style={btnSave} size="lg" block>Save</button>
                     </div>
                 </div>
             </div>

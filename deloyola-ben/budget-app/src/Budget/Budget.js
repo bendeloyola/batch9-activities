@@ -5,8 +5,8 @@ const Budget = (props) => {
 
     const { budget, expenses } = useContext(AppContext)
     return (
-        <div className="alert alert-secondary">
-            <span>Budget: ₱{budget}</span>
+        <div className="alert bg-dark text-white">
+            <span>Savings: ₱{budget}</span>
         </div>  
     )
 }
