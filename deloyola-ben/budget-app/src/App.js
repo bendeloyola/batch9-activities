@@ -12,7 +12,7 @@ import Dashboard from './Dashboard/Dashboard'
 function App() {
 
   const userAccount = {
-    username: "benjon",
+    username: "Ben",
     password: "qweasd123"
   } 
 

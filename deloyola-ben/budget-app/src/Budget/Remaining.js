@@ -12,11 +12,16 @@ const Remaining = (props) => {
 
     const resultTotal = budget - totalExpenses;
 
-    // const alertType = totalExpenses > budget ? 'alert-danger' : 'alert-success'
+
+    const spanFlex = {
+        display: 'flex',
+        justifyContent: 'space-between'
+    }
 
     return (
-        <div className="alert bg-dark text-white">
-            <span>Remaining Balance: ₱{resultTotal}</span>
+        <div className="alert bg-dark text-white" style={spanFlex}>
+            <span >Savings / Balance</span>
+            <span>₱{resultTotal}</span>
         </div>  
     )
 

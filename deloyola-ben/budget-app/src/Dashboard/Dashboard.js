@@ -6,7 +6,7 @@ import './css/Dashboard.css'
 
 
 //components
-import Budget from '../Budget/Budget'
+// import Budget from '../Budget/Budget'
 import Remaining from '../Budget/Remaining'
 import Spent from '../Budget/Spent'
 import ExpenseList from '../Expense/ExpenseList'
@@ -17,11 +17,11 @@ const Dashboard = (props) => {
     return (
         <AppProvider>
             <div className="container">
-                <h1 className="mt-3"> Welcome {props.username}</h1>
+                <h1 className="mt-3">WELCOME {props.username}!</h1>
                 <div className="row mt-3">
-                    <div className="col-sm">
+                    {/* <div className="col-sm">
                         <Budget/>
-                    </div>
+                    </div> */}
                     <div className="col-sm">
                         <Remaining/>
                     </div>

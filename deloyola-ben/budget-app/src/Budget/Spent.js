@@ -8,9 +8,15 @@ const Spent = (props) => {
         return (total += item.cost)
     }, 0)
 
+    const spanFlex = {
+        display: 'flex',
+        justifyContent: 'space-between'
+    }
+
     return (
-        <div className="alert bg-dark text-white">
-            <span>Expenses: ₱{totalExpenses}</span>
+        <div className="alert bg-dark text-white" style={spanFlex}>
+            <span>Expenses</span>
+            <span>₱{totalExpenses}</span>
         </div>  
     )
 }
