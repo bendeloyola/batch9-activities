@@ -2,7 +2,7 @@ import React from 'react'
 
 //styles
 import './css/Dashboard.css'
-
+import { btnLogout } from '../Styles'
 
 
 //components
@@ -41,8 +41,9 @@ const Dashboard = (props) => {
                         <AddExpenseForm/>
                     </div>
                 </div>
-                
-                <button className="btn-logout" onClick={props.logout}>Log out</button>
+                <div className="col-sm mt-4">
+                    <button className="btn" style={btnLogout} onClick={props.logout}>Log out</button>
+                </div>
             </div>
         </AppProvider>
         

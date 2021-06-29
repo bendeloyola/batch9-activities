@@ -1,18 +1,28 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { AppContext } from '../Context/AppContext'
+import AddBudget from './AddBudget'
+import ViewBudget from './ViewBudget'
 
 const Remaining = (props) => {
 
-    const { expenses, budget } = useContext(AppContext)
+    const { budget, dispatch } = useContext(AppContext) 
+    const [isEditing, setIsEditing] = useState(false);
 
-    const totalExpenses = expenses.reduce((total, item) => {
-        // console.log(`total ${total} + ${item.cost}` )
-        return (total = total + item.cost)
-    }, 0)
+    const handleEditClick = () => {
+        setIsEditing(!isEditing)
+    }
 
-    const resultTotal = budget - totalExpenses;
+   const handleSaveClick = (value) => { 
+        dispatch({
+            type: 'SET_BUDGET',
+            payload: value,
+        });
+        setIsEditing(false);
+
+   }
 
 
+    //style
     const spanFlex = {
         display: 'flex',
         justifyContent: 'space-between'
@@ -20,9 +30,15 @@ const Remaining = (props) => {
 
     return (
         <div className="alert bg-dark text-white" style={spanFlex}>
-            <span >Savings / Balance</span>
-            <span>₱{resultTotal}</span>
-        </div>  
+            { isEditing ?
+                (
+                    <AddBudget handleSaveClick={handleSaveClick} budget={budget}/>
+                ) : 
+                (
+                    <ViewBudget handleEditClick={handleEditClick} budget={budget}/>
+                )
+            }
+        </div> 
     )
 
     

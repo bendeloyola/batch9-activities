@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 //styles
 import './css/AddExpenseForm.css'
+import { btnSave, inputStyle} from '../Styles'
 
 const AddExpenseForm = (props) => {
 
@@ -38,16 +39,8 @@ const AddExpenseForm = (props) => {
         setCost('')
     }
 
-    const inputStyle = {
-        backgroundColor: 'transparent',
-        color: 'white'
-    }
+  
 
-    const btnSave = {
-        width: '100%',
-        backgroundColor: '#3F77A0',
-        color: 'white'
-    }
 
     return (
         <form onSubmit={onSubmit}>
