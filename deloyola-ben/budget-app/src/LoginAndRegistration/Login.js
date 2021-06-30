@@ -1,8 +1,19 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import './css/Login.css'
 
 
-const Login = ({Login, error, loginIsClicked}) => {
+const Login = ({Login, error }) => {
+
+    let history = useHistory()
+
+    const backToHome = () => {
+        history.push('/')
+    }
+
+    const createAccount = () => {
+        history.push('/registration')
+    }
 
 //    const [ inputValue, setInputValue ] = useState();
     
@@ -55,7 +66,11 @@ const Login = ({Login, error, loginIsClicked}) => {
                         <div className="error">{error}</div>
                     ) : "" }
                     <input type="submit" value="LOGIN"/>
-                    <button className="home" onClick={() => loginIsClicked("")}>Back to home</button>
+                    <div className='col-12 d-flex justify-content-between'>
+                        <button className="home" onClick={backToHome}>Back to home</button>
+                        <button className="home" onClick={createAccount}>Create Account</button>
+                    </div>
+                    
                 </div>
 
                 

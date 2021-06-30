@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 //styles
 import './App.css'
@@ -8,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Login from './LoginAndRegistration/Login'
 import LandingPage from './LandingPage/LandingPage';
 import Dashboard from './Dashboard/Dashboard'
+import Registration from './LoginAndRegistration/Registration';
 
 function App() {
 
@@ -18,7 +20,7 @@ function App() {
 
   const [ user, setUser ] = useState({username: ""})
   const [ error, setError ] = useState("")
-  const [ loginClicked, setLoginClicked ] = useState("")
+
 
   const loginHandler = (details) => {
     console.log(details)
@@ -38,23 +40,41 @@ function App() {
       setError("")
   } 
 
-  const loginIsClicked = (clicked) => {
-    setLoginClicked(clicked)
-    setError("")
-  }
-
   return (
-    <div className="App">
-      { (loginClicked == "") ? ( 
-        <LandingPage loginIsClicked={loginIsClicked}/>
-        ) : 
-          (user.username != "") ? (
-            <Dashboard username={user.username} logout={Logout}/>
-        ) :
-        (
-          <Login Login={loginHandler} error={error} loginIsClicked={loginIsClicked}/>
-      )}
-    </div>
+    <Router>
+      <div className="App">
+        {/* { (loginClicked == "") ? ( 
+          <LandingPage loginIsClicked={loginIsClicked}/>
+          ) : 
+            (user.username != "") ? (
+              <Dashboard username={user.username} logout={Logout}/>
+          ) :
+          (
+            <Login Login={loginHandler} error={error} loginIsClicked={loginIsClicked}/>
+        )} */}
+        <Switch>
+          <Route exact path="/">
+            <LandingPage />
+          </Route>
+          
+          {
+            (user.username != "") ? (
+            
+              <Dashboard username={user.username} logout={Logout}/>
+          
+            ) : 
+            (  
+            <Route exact path="/login">
+              <Login Login={loginHandler} error={error}/>
+            </Route>
+            )
+          }
+          <Route exact path="/registration">
+            <Registration/>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
