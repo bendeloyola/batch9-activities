@@ -19,7 +19,7 @@ const LandingPage = (props) => {
             <div className="nav-content">
                 <h4>Budget App</h4>
                 <ul>
-                    <li><button>Home</button></li>
+                    {/* <li><button>Home</button></li> */}
                     <li><button onClick={registrationForm}>Register</button></li>
                     <li><button onClick={loginForm}>Login</button></li>
                 </ul>

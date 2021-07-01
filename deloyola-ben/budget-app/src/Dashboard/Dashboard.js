@@ -47,12 +47,6 @@ const Dashboard = (props) => {
             </div>
         </AppProvider>
         
-
-        // <div className="welcome">
-        //     <h2>Welcome, <span>{props.username}</span></h2>
-        //     <button className="btn-logout" onClick={props.logout}>Log out</button>
-        // </div>
-        
     )
 }
 

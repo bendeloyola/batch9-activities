@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { Alert } from 'react-bootstrap';
 import './css/Login.css'
 
 const Registration = () => {
+
+
+    // const userInfoStorage = {
+    //     usersData: []
+    // }
+
+    const [userData, setUserData] = useState({username:"", email:"", password:""})
+    // const [localStorageData, setLocalStorageData] = useState();
+
 
     let history = useHistory()
 
@@ -10,28 +20,92 @@ const Registration = () => {
         history.push('/login')
     }
 
+    // const [username, setUsername] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+
+    const [flag, setFlag] = useState(false);
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault()  
+
+        // var data = JSON.stringify(userData);
+        // console.log(data)
+        // let dataUsers = userData
+        // let setData =  userInfoStorage.usersData.push(dataUsers)
+        // console.log(userInfoStorage)
+
+        if (!userData.username || !userData.email || !userData.password) {
+            setFlag(true);
+
+        } else {
+            setFlag(false);
+
+            localStorage.setItem('userData', JSON.stringify(userData))
+
+            // setLocalStorageData({...userData, userData})
+
+            // console.log(localStorageData)
+            // let setData = {
+             
+            // }
+
+            // console.log(userData)
+        
+            // localStorage.setItem('userData', JSON.stringify(userData))
+            // console.log("Saved in Local Storage");
+            alreadyHaveAccount()
+
+        }
+
+    }
+
+    const usernameHandleChange = (e) =>{
+        setUserData({...userData, username: e.target.value})
+    }
+
+    const emailHandleChange = (e) =>{
+        setUserData({...userData, email: e.target.value})
+    }
+
+    const passwordHandleChange = (e) =>{
+        setUserData({...userData, password: e.target.value})
+    }
+
+    //     let setData = () =>{
+    //         localStorage.setItem('userData', inputValue)
+    //         sessionStorage.setItem('sessionStorageData', inputValue)
+    //         let data = localStorage.getItem('userData')
+    //         let sessionData = sessionStorage.getItem('sessionStorageData')
+    //         console.log(data);
+    //         console.log(sessionData);
+    //     }
+
 
     return (
         <div className="container-page">
-            <form className="login-form" >
+            <form className="login-form" onSubmit={handleFormSubmit}>
                 <div className="formInner">
                     <h2>Register Now!</h2>
                     
                     <div className="form-group">
                         <label htmlFor="username">Username:</label>
-                        <input type="text" name="username" id="username" />
+                        <input type="text" name="username" id="username" onChange={usernameHandleChange}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email:</label>
-                        <input type="text" name="email" id="email" />
+                        <input type="text" name="email" id="email" onChange={emailHandleChange}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password:</label>
-                        <input type="password" name="password" id="password" />
+                        <input type="password" name="password" id="password" onChange={passwordHandleChange}/>
                     </div>
-                    {/* {(error != "") ? (
-                        <div className="error">{error}</div>
-                    ) : "" } */}
+                    { flag &&
+                        <Alert color='primary' variant="danger" >
+                                Make sure to fill up every field!
+                        </Alert>
+
+                    }
                     <input type="submit" value="REGISTER"/>
                     <button className="home" onClick={alreadyHaveAccount}>Already Have an Account</button>
 

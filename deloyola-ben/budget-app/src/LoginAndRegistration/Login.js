@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { Alert } from 'react-bootstrap';
+
 import './css/Login.css'
 
 
@@ -63,7 +65,9 @@ const Login = ({Login, error }) => {
                         <input type="password" name="password" id="password" onChange={passwordHandleChange} value={details.password}/>
                     </div>
                     {(error != "") ? (
-                        <div className="error">{error}</div>
+                        <Alert color='primary' variant="danger" >
+                               Credentials not matched!
+                        </Alert>
                     ) : "" }
                     <input type="submit" value="LOGIN"/>
                     <div className='col-12 d-flex justify-content-between'>

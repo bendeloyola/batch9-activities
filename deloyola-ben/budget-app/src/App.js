@@ -13,20 +13,24 @@ import Registration from './LoginAndRegistration/Registration';
 
 function App() {
 
-  const userAccount = {
-    username: "Ben",
-    password: "qweasd123"
-  } 
+  // const userAccount = {
+  //   username: "Ben",
+  //   password: "qweasd123"
+  // } 
 
   const [ user, setUser ] = useState({username: ""})
   const [ error, setError ] = useState("")
 
 
   const loginHandler = (details) => {
-    console.log(details)
 
-    if(details.username == userAccount.username && details.password == userAccount.password){
-      console.log("Logged in")
+    let userData = JSON.parse(localStorage.getItem('userData'))
+    // let password = JSON.parse(localStorage.getItem('password'))
+    console.log('from input: ', details.password)
+    console.log('from localStorage: ', userData)
+
+    if(details.username == userData.username && details.password == userData.password){
+      
       setUser({
         username: details.username,
       })
