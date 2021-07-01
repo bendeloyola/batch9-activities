@@ -60,14 +60,7 @@ const Registration = () => {
 
     }
 
-       //     let setData = () =>{
-    //         localStorage.setItem('userData', inputValue)
-    //         sessionStorage.setItem('sessionStorageData', inputValue)
-    //         let data = localStorage.getItem('userData')
-    //         let sessionData = sessionStorage.getItem('sessionStorageData')
-    //         console.log(data);
-    //         console.log(sessionData);
-    //     }
+    
 
     const usernameHandleChange = (e) =>{
         setUserData({...userData, username: e.target.value})
@@ -81,6 +74,14 @@ const Registration = () => {
         setUserData({...userData, password: e.target.value})
     }
 
+           //     let setData = () =>{
+    //         localStorage.setItem('userData', inputValue)
+    //         sessionStorage.setItem('sessionStorageData', inputValue)
+    //         let data = localStorage.getItem('userData')
+    //         let sessionData = sessionStorage.getItem('sessionStorageData')
+    //         console.log(data);
+    //         console.log(sessionData);
+    //     }
  
 
 
