@@ -10,6 +10,7 @@ import Login from './LoginAndRegistration/Login'
 import LandingPage from './LandingPage/LandingPage';
 import Dashboard from './Dashboard/Dashboard'
 import Registration from './LoginAndRegistration/Registration';
+import MyLandingPage from './LandingPage/MyLandingPage';
 
 function App() {
 
@@ -58,7 +59,8 @@ function App() {
         )} */}
         <Switch>
           <Route exact path="/">
-            <LandingPage />
+            {/* <LandingPage /> */}
+            <MyLandingPage/>
           </Route>
           
           {
