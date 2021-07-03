@@ -4,7 +4,7 @@ import { btnEditAdd } from '../Styles'
 
 const ViewBudget = (props) => {
 
-    const { expenses, budget, status } = useContext(AppContext)
+    const { expenses, budget } = useContext(AppContext)
 
 
     const totalExpenses = expenses.reduce((total, item) => {
@@ -17,17 +17,7 @@ const ViewBudget = (props) => {
     return (
         <>
             <span >Savings / Balance</span>
-        
-                { 
-                 budget < resultTotal ? 
-                 ( 
-                    <span>{status}</span> 
-                 ) :
-                 (
-                    <span>₱{resultTotal}</span>
-                 )
-                }
-           
+            <span>₱{resultTotal}</span>
             <button type='button' class='btn' style={btnEditAdd} onClick={props.handleEditClick}>
                 Add
             </button>

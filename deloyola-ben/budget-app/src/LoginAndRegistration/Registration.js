@@ -93,15 +93,15 @@ const Registration = () => {
                     
                     <div className="form-group">
                         <label htmlFor="username">Username:</label>
-                        <input type="text" name="username" id="username" onChange={usernameHandleChange}/>
+                        <input type="text" name="username" id="username" onChange={usernameHandleChange} autoComplete="on"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email:</label>
-                        <input type="text" name="email" id="email" onChange={emailHandleChange}/>
+                        <input type="text" name="email" id="email" onChange={emailHandleChange} autoComplete="on"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password:</label>
-                        <input type="password" name="password" id="password" onChange={passwordHandleChange}/>
+                        <input type="password" name="password" id="password" onChange={passwordHandleChange} autoComplete="on"/>
                     </div>
                     { flag &&
                         <Alert color='primary' variant="danger" >

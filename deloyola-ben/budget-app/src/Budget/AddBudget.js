@@ -9,10 +9,12 @@ const AddBudget = (props) => {
             <input
 				required='required'
 				type='number'
+				min="0"
+          		step="1"
 				className='form-control mr-3'
-				id='name'
-				value={value}
+				value={value && Math.max(0, value)}
 				onChange={(event) => setValue(event.target.value)}
+				
 			/>
 			<button
 				type='button'
