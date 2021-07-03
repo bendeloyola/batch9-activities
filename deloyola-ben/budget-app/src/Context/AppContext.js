@@ -7,21 +7,21 @@ const AppReducer = (state, action) => {
          
             return {
                 ...state, 
-                expenses: [...state.expenses, action.payload]
+                expenses: [...state.expenses, action.addExpensePayload]
             }
           
             
         case 'DELETE_EXPENSE': 
             return {
                 ...state,
-                expenses: state.expenses.filter((expense) => expense.id !== action.payload)
+                expenses: state.expenses.filter((expense) => expense.id !== action.deletePayload)
             }
         case 'SET_BUDGET':
             // console.log()
             
             return {
                 ...state,
-                budget: state.budget + parseInt(action.payload),
+                budget: state.budget + parseInt(action.remainingPayload),
             }
 
         default:

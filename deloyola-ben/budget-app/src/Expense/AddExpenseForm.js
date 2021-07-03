@@ -32,7 +32,7 @@ const AddExpenseForm = (props) => {
 
         dispatch({
             type: 'ADD_EXPENSE',
-            payload: expense
+            addExpensePayload: expense
         })
 
         setName('')

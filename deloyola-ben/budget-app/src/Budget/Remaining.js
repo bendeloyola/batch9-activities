@@ -15,7 +15,7 @@ const Remaining = (props) => {
    const handleSaveClick = (value) => { 
         dispatch({
             type: 'SET_BUDGET',
-            payload: value,
+            remainingPayload: value,
         });
         setIsEditing(false);
 

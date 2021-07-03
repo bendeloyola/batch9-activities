@@ -20,20 +20,10 @@ const Registration = () => {
         history.push('/login')
     }
 
-    // const [username, setUsername] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-
     const [flag, setFlag] = useState(false);
 
     const handleFormSubmit = (e) => {
         e.preventDefault()  
-
-        // var data = JSON.stringify(userData);
-        // console.log(data)
-        // let dataUsers = userData
-        // let setData =  userInfoStorage.usersData.push(dataUsers)
-        // console.log(userInfoStorage)
 
         if (!userData.username || !userData.email || !userData.password) {
             setFlag(true);
@@ -43,17 +33,6 @@ const Registration = () => {
 
             localStorage.setItem('userData', JSON.stringify(userData))
 
-            // setLocalStorageData({...userData, userData})
-
-            // console.log(localStorageData)
-            // let setData = {
-             
-            // }
-
-            // console.log(userData)
-        
-            // localStorage.setItem('userData', JSON.stringify(userData))
-            // console.log("Saved in Local Storage");
             alreadyHaveAccount()
 
         }
@@ -74,16 +53,7 @@ const Registration = () => {
         setUserData({...userData, password: e.target.value})
     }
 
-           //     let setData = () =>{
-    //         localStorage.setItem('userData', inputValue)
-    //         sessionStorage.setItem('sessionStorageData', inputValue)
-    //         let data = localStorage.getItem('userData')
-    //         let sessionData = sessionStorage.getItem('sessionStorageData')
-    //         console.log(data);
-    //         console.log(sessionData);
-    //     }
  
-
 
     return (
         <div className="container-page">
